@@ -181,6 +181,29 @@ Jenkins UI → **Manage Jenkins** → **Nodes and Clouds** → **New Node**
 
 Click **Save** → ensure agent status becomes **online**.
 
+### Another way to do SSH Connection setup
+
+```shell
+# in the jenkins controller
+ssh-keygen
+
+# this will create public and private key
+~/.ssh/id_rsa
+~/.ssh/id_rsa.pub
+
+# Copy public key:
+cat ~/.ssh/id_rsa.pub
+
+# SSH into agent:
+mkdir -p ~/.ssh
+vim ~/.ssh/authorized_keys
+# Paste public key.
+
+Set permissions:
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+```
+
 ---
 
 ## Step 7: Create the Jenkins Pipeline Job
@@ -216,7 +239,7 @@ curl http://<agent-public-ip>:<nodeport>
 
 ---
 
-## Notes for Interviews
+## Notes
 - Jenkins controller orchestrates, agent executes builds
 - Docker Hub credentials stored securely in Jenkins
 - Kubernetes manifests updated dynamically in pipeline
