@@ -101,6 +101,7 @@ sudo apt update
 sudo apt install -y jenkins
 sudo systemctl enable --now jenkins
 ```
+> Note: Jenkins occasionally rotates its GPG key; if this command fails, check the official Jenkins install docs for the latest key URL.
 
 ### 4.3 Unlock Jenkins & Install Plugins
 ```bash
@@ -229,4 +230,3 @@ curl http://<agent-public-ip>:<nodeport>
 - **Docker permission denied:** ensure user is in `docker` group and re-login
 - **kubectl fails:** verify Kind cluster exists on agent
 - **Pipeline fails at push:** confirm `dockerhub-creds` ID
-
